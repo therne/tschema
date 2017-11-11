@@ -1,0 +1,19 @@
+{
+  "name": "tschema",
+  "version": "1.0.0",
+  "description": "Simple and fastest static type checker for Node.js.",
+  "main": "index.js",
+  "repository": "https://github.com/therne/tschema",
+  "author": "Hyojun Kim",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha",
+    "coverage": "nyc mocha",
+    "test-travis": ""
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.0",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0"
+  }
+}
