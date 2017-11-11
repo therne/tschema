@@ -114,7 +114,9 @@ So don't use any external dependency in dateParser function.
 
 ## TODO
 
-* Named Schema for self-containing
+* Named Schema for self-embedding (ex: `User = new Schema('User', { author: 'User' })`)
 * Strict mode (fails at `verify` if given value has fields undefined on schema)
+* Integration with ORM/ODM libraries (`sequelize`, `mongorito`, `mongoose`, ...)
+* [TypeScript](https://typescriptlang.org), [Flow](https://flow.org) support
 
 ## License: MIT
