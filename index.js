@@ -23,6 +23,9 @@ const defaultOptions = {
     errorProducer: (field, type) => `throw Error('${field} is not a ${type}.')`,
 };
 
+/**
+ * Schema that can validate types and forms of some value.
+ */
 class Schema {
     constructor(schema, options = {}) {
         this.schema = schema;
@@ -32,8 +35,16 @@ class Schema {
         this.validationFunction = new Function('x', code);
     }
 
+    /**
+     * Validates given value to the schema.
+     * @param {object} value
+     *
+     * By default, it throws error if the value is invalid.
+     * You can change this behavior (for example, returning some
+     * value) by giving custom errorProducer to options.
+     */
     validate(value) {
-        this.validationFunction(value);
+        return this.validationFunction(value);
     }
 
     compileCode(schema, field = 'x', fieldName = 'value') {
