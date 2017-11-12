@@ -36,16 +36,27 @@ User.validate({ name: 'John', age: 20, friends: ['foo', 'bar'], info: { createdA
 
 ## Documentations
 
-### Creating a Schema
+### Defining a Schema
 
 ```
 new Schema(schema, options)
 ```
-You can create schema using Schema class.
+You can create schema using `tschema.Schema` class.
 
-* `schema`: any type or object.  
+* `schema`: any type or object.
 
-  Alternatively, you can make schema with [Flow](https://flow.org) style.
+  Available types are:
+    * `Number` `String` `Boolean` - primitives
+    * `Array` - any array
+    * `Object` - any object
+    * `Date`
+    * `Any` - anything
+    * `Optional(Type)` - optional (nullable)
+    * `[Type]` - array of some type
+    * `{ ... }` - nested object
+    * `Schema` - another schema
+  
+  Instead of giving constructors or `Optional`, you can define schema using [Flow](https://flow.org) style.
 
   ```js
   const User = new Schema({
@@ -55,6 +66,12 @@ You can create schema using Schema class.
     createdAt: '?date',
   });
   ```
+  
+  * `'number'`, `'string'`, `'boolean'` - primitives
+  * `'array'`, `'object'`, `'date'`, `'any'`
+  * `'?type'` - optional
+  * `'type[]'` - array of some type
+  
 
 * `options`: You can pass some options if you want. These options will be
   * `errorProducer`: The error function.
@@ -97,7 +114,9 @@ So don't use any external dependency in dateParser function.
 
 ## TODO
 
-* Named Schema for self-containing
+* Named Schema for self-embedding (ex: `User = new Schema('User', { author: 'User' })`)
 * Strict mode (fails at `verify` if given value has fields undefined on schema)
+* Integration with ORM/ODM libraries (`sequelize`, `mongorito`, `mongoose`, ...)
+* [TypeScript](https://typescriptlang.org), [Flow](https://flow.org) support
 
 ## License: MIT
