@@ -87,16 +87,11 @@ errorProducer: (field, type) => `throw Error('${field} is not a ${type}.')`
 ```
 
 You can change this behavior by passing your own `errorProducer` to `options`.  
-
-**NOTE THAT** the default errorProducer function returns **String** - because the function
-will be called on schema-compilation time, not on runtime. So the function must return `String` code fragment
-that will be added to the compiled verify function.
-
-So, for example, if you want to return some object if `Schema#validate` fails, you need to do like this:
+For example, if you want to return some object if `Schema#validate` fails, you need to do like this:
 
 ```js
 const User = new Schema({ ... }, {
-  errorProducer: (field, type) => `return { error: { name: '${field}', tobe: '${type}' } }`
+  errorProducer: (field, type) => ({ error: { name: field, tobe: type } })
 });
 ```
 
@@ -108,9 +103,6 @@ dateParser: (value) => new Date(value)
 ```
 
 You can replace this parser by passing your own `dateParser` to `options`.
-
-**NOTE THAT** this `dateParser` will be evaluated to plain code using `Function#toString()`, 
-So don't use any external dependency in dateParser function.
 
 ## TODO
 
