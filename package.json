@@ -1,6 +1,6 @@
 {
   "name": "tschema",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Simple and fastest static type checker for Node.js.",
   "main": "index.js",
   "repository": "https://github.com/therne/tschema",
