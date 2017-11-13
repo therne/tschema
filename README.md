@@ -43,18 +43,18 @@ new Schema(schema, options)
 ```
 You can create schema using `tschema.Schema` class.
 
-* `schema`: any type or object.
+* `schema`: Any type or object.
 
   Available types are:
-    * `Number` `String` `Boolean` - primitives
-    * `Array` - any array
-    * `Object` - any object
+    * `Number` `String` `Boolean` - Primitives
+    * `Array` - Any `Array`
+    * `Object` - Any `Object` (all non-primitive types) 
     * `Date`
-    * `Any` - anything
-    * `Optional(Type)` - optional (nullable)
-    * `[Type]` - array of some type
-    * `{ ... }` - nested object
-    * `Schema` - another schema
+    * `Any` - Anything including `null`, `undefined`
+    * `Optional(Type)` - Given type but `null`, `undefined` are allowed
+    * `[Type]` - Array of given type
+    * `{ ... }` - Nested object
+    * `Schema` - Another `Schema`
   
   Instead of giving constructors or `Optional`, you can define schema using [Flow](https://flow.org) style.
 
@@ -67,10 +67,10 @@ You can create schema using `tschema.Schema` class.
   });
   ```
   
-  * `'number'`, `'string'`, `'boolean'` - primitives
+  * `'number'`, `'string'`, `'boolean'` - Primitives
   * `'array'`, `'object'`, `'date'`, `'any'`
-  * `'?type'` - optional
-  * `'type[]'` - array of some type
+  * `'?type'` - Optional
+  * `'type[]'` - Array of given type
   
 
 * `options`: You can pass some options if you want. These options will be
@@ -83,7 +83,7 @@ You can create schema using `tschema.Schema` class.
 In default, `Schema#validate` will throw an `Error` if given value is invalid.
 
 ```js
-errorProducer: (field, type) => `throw Error('${field} is not a ${type}.')`
+errorProducer: (field, type) => throw Error(`${field} is not a ${type}.`)
 ```
 
 You can change this behavior by passing your own `errorProducer` to `options`.  
@@ -108,7 +108,7 @@ You can replace this parser by passing your own `dateParser` to `options`.
 
 * Named Schema for self-embedding (ex: `User = new Schema('User', { author: 'User' })`)
 * Strict mode (fails at `verify` if given value has fields undefined on schema)
-* Integration with ORM/ODM libraries (`sequelize`, `mongorito`, `mongoose`, ...)
+* Integration with ORM / ODM libraries (`sequelize`, `mongorito`, `mongoose`, ...)
 * [TypeScript](https://typescriptlang.org), [Flow](https://flow.org) support
 
 ## License: MIT
